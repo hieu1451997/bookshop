@@ -4,7 +4,7 @@
             <div class="col-md-6 col-sm-6 col-6 col-lg-2">
                 <div class="logo">
                     <a href="{{URL::to('/')}}">
-                        <img src="{{('frontend/images/logo/logo.png')}}" alt="logo images">
+                        <img src="{{URl::to('frontend/images/logo/logo.png')}}" alt="logo images">
                     </a>
                 </div>
             </div>
@@ -14,17 +14,17 @@
                         <li class="drop with--one--item"><a href="{{URL::to('/')}}">Trang chủ</a></li>
                         
                         <li class="drop"><a href="shop-grid.html">Sách</a>
-                            <div class="megamenu mega03">
-                                <ul class="item item03">
+                            <div class="megamenu mega02">
+                                <ul class="item item02">
                                     <li class="title">Thể loại</li>
                                     @foreach($category_product as $key => $cate_pro)
                                         <li><a href="{{URL::to('/danh-muc-san-pham/'.$cate_pro->category_product_id)}}">{{$cate_pro->category_product_name}} </a></li>
                                     @endforeach
                                 </ul>
                                 <ul class="item item03">
-                                    <li class="title">Nhà xuất bản</li>
-                                    @foreach($publisher as $key => $val)
-                                        <li><a href="{{URL::to('/NXB/'.$val->publisher_id)}}">{{$val->publisher_name}} </a></li>
+                                    <li class="title">NXB</li>
+                                    @foreach($publisher as $key => $vall)
+                                        <li><a href="{{URL::to('/nha-xuat-ban/'.$vall->publisher_id)}}">{{$vall->publisher_name}} </a></li>
                                     @endforeach
                                     
                                 </ul>
@@ -63,7 +63,7 @@
                                     <div class="miniproduct">
                                         <div class="item01 d-flex">
                                             <div class="thumb">
-                                                <a href="product-details.html"><img src="frontend/images/product/sm-img/1.jpg" alt="product images"></a>
+                                                <a href="product-details.html"><img src="{{URL::to('frontend/images/product/sm-img/1.jpg')}}" alt="product images"></a>
                                             </div>
                                             <div class="content">
                                                 <h6><a href="product-details.html">Voyage Yoga Bag</a></h6>
@@ -79,7 +79,7 @@
                                         </div>
                                         <div class="item01 d-flex mt--20">
                                             <div class="thumb">
-                                                <a href="product-details.html"><img src="frontend/images/product/sm-img/3.jpg" alt="product images"></a>
+                                                <a href="product-details.html"><img src="{{URL::to('frontend/images/product/sm-img/3.jpg')}}" alt="product images"></a>
                                             </div>
                                             <div class="content">
                                                 <h6><a href="product-details.html">Impulse Duffle</a></h6>
@@ -95,7 +95,7 @@
                                         </div>
                                         <div class="item01 d-flex mt--20">
                                             <div class="thumb">
-                                                <a href="product-details.html"><img src="frontend/images/product/sm-img/2.jpg" alt="product images"></a>
+                                                <a href="product-details.html"><img src="{{URL::to('frontend/images/product/sm-img/2.jpg')}}" alt="product images"></a>
                                             </div>
                                             <div class="content">
                                                 <h6><a href="product-details.html">Compete Track Tote</a></h6>

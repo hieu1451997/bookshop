@@ -58,7 +58,7 @@
                                 <!-- Start product images -->
                                 <div class="product-images">
                                     <div class="main-image images">
-                                        <img alt="big images" src="frontend/images/product/big-img/1.jpg">
+                                        <img alt="big images" src="{{URL::to('frontend/images/product/big-img/1.jpg')}}">
                                     </div>
                                 </div>
                                 <!-- end product images -->

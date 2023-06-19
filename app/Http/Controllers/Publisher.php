@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
-
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
@@ -74,5 +73,18 @@ class Publisher extends Controller
         Session::put('message','Xóa NXB thành công');
         return Redirect::to('/all-publisher');
         
+    }
+
+    // client
+    public function show_publisher_home($publisher_id){
+        $category_product=DB::table('tbl_category_product')->where('category_product_status','0')->orderby('category_product_id','desc')->get();
+
+        $publi=DB::table('tbl_publisher')->where('tbl_publisher.publisher_id',$publisher_id)->get();
+
+        $publisher=DB::table('tbl_publisher')->where('publisher_status','0')->orderby('publisher_id','desc')->get();
+
+        $all_product_by_publisher=DB::table('tbl_product')->join('tbl_publisher','tbl_product.publisher_id','=','tbl_publisher.publisher_id')->where('tbl_product.publisher_id',$publisher_id)->get();
+
+        return view('client.pages.publisher.show_publisher')->with('category_product',$category_product)->with('publisher',$publisher)->with('all_product_by_publisher',$all_product_by_publisher)->with('publi',$publi);
     }
 }

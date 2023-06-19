@@ -13,6 +13,7 @@ session_start();
 
 class CategoryProduct extends Controller
 {
+    //admin
     public function AuthLogin(){
         $admin_id= Session::get('admin_id');
         if($admin_id){
@@ -75,4 +76,19 @@ class CategoryProduct extends Controller
         return Redirect::to('/all-category-product');
 
     }
+
+    // client
+    public function show_category_home($category_id){
+        $category_product=DB::table('tbl_category_product')->where('category_product_status','0')->orderby('category_product_id','desc')->get();
+
+        $category=DB::table('tbl_category_product')->where('tbl_category_product.category_product_id',$category_id)->get('category_product_name');
+
+        $publisher=DB::table('tbl_publisher')->where('publisher_status','0')->orderby('publisher_id','desc')->get();
+
+        $all_product_by_category=DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_product_id','=','tbl_category_product.category_product_id')->where('tbl_product.category_product_id',$category_id)->get();
+
+        return view('client.pages.category.show_category')->with('category_product',$category_product)->with('publisher',$publisher)->with('all_product_by_category',$all_product_by_category)->with('category',$category);
+    }
+
+    
 }

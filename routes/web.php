@@ -13,7 +13,9 @@
 // frontend
 Route::get('','HomeController@index');
 
+Route::get('/danh-muc-san-pham/{category_product_id}','CategoryProduct@show_category_home');
 
+Route::get('/nha-xuat-ban/{publisher_id}','Publisher@show_publisher_home');
 
 
 // backend

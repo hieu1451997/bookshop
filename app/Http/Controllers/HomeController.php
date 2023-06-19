@@ -21,4 +21,7 @@ class HomeController extends Controller
         return view('client.pages.index')->with('category_product',$category_product)->with('publisher',$publisher)->with('all_product',$all_product);
 
     }
+
+    
+
 }
