@@ -123,4 +123,19 @@ class ProductController extends Controller
         return Redirect::to('/all-product');
 
     }
+
+    //client 
+    public function details_product($product_id){
+        $category_product=DB::table('tbl_category_product')->where('category_product_status','0')->orderby('category_product_id','desc')->get();
+
+        $publisher=DB::table('tbl_publisher')->where('publisher_status','0')->orderby('publisher_id','desc')->get();
+       
+        $details_product=DB::table('tbl_product')->join('tbl_category_product','tbl_category_product.category_product_id','=','tbl_product.category_product_id')->join('tbl_publisher','tbl_publisher.publisher_id','=','tbl_product.publisher_id')->where('tbl_product.product_id',$product_id)->get();
+        foreach ($details_product as $value) {
+            $category_id=$value->category_product_id;
+        }
+        $related_product=DB::table('tbl_product')->join('tbl_category_product','tbl_category_product.category_product_id','=','tbl_product.category_product_id')->join('tbl_publisher','tbl_publisher.publisher_id','=','tbl_product.publisher_id')->where('tbl_category_product.category_product_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->where('tbl_product.product_status','0')->get();
+
+        return view('client.pages.product.details_product')->with('category_product',$category_product)->with('publisher',$publisher)->with('details_product',$details_product)->with('related_product',$related_product);
+    }
 }

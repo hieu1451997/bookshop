@@ -29,13 +29,13 @@
                     <div class="product product__style--3">
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                             <div class="product__thumb">
-                                <a class="first__img" href="single-product.html"><img  src="{{URL::to('uploads/product/'.$pro->product_image)}}" alt="product image"></a>
+                                <a class="first__img" href="{{URL::to('/chi-tiet-san-pham/'.$pro->product_id)}}"><img  src="{{URL::to('uploads/product/'.$pro->product_image)}}" alt="product image"></a>
                                 <div class="hot__box">
                                     <span class="hot-label">BEST SALLER</span>
                                 </div>
                             </div>
                             <div class="product__content content--center">
-                                <h4><a href="single-product.html">{{$pro->product_name}}</a></h4>
+                                <h4><a href="{{URL::to('/chi-tiet-san-pham/'.$pro->product_id)}}">{{$pro->product_name}}</a></h4>
                                 <ul class="prize d-flex">
                                     <li>{{$pro->product_price}} VNĐ</li>
                                     <li class="old_prize">{{$pro->product_price}} VNĐ</li>

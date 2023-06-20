@@ -17,6 +17,8 @@ Route::get('/danh-muc-san-pham/{category_product_id}','CategoryProduct@show_cate
 
 Route::get('/nha-xuat-ban/{publisher_id}','Publisher@show_publisher_home');
 
+Route::get('/chi-tiet-san-pham/{product_id}','ProductController@details_product');
+
 
 // backend
 

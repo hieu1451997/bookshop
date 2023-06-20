@@ -83,7 +83,7 @@ class Publisher extends Controller
 
         $publisher=DB::table('tbl_publisher')->where('publisher_status','0')->orderby('publisher_id','desc')->get();
 
-        $all_product_by_publisher=DB::table('tbl_product')->join('tbl_publisher','tbl_product.publisher_id','=','tbl_publisher.publisher_id')->where('tbl_product.publisher_id',$publisher_id)->get();
+        $all_product_by_publisher=DB::table('tbl_product')->join('tbl_publisher','tbl_product.publisher_id','=','tbl_publisher.publisher_id')->where('tbl_product.publisher_id',$publisher_id)->where('tbl_product.product_status','0')->get();
 
         return view('client.pages.publisher.show_publisher')->with('category_product',$category_product)->with('publisher',$publisher)->with('all_product_by_publisher',$all_product_by_publisher)->with('publi',$publi);
     }

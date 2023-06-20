@@ -85,7 +85,7 @@ class CategoryProduct extends Controller
 
         $publisher=DB::table('tbl_publisher')->where('publisher_status','0')->orderby('publisher_id','desc')->get();
 
-        $all_product_by_category=DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_product_id','=','tbl_category_product.category_product_id')->where('tbl_product.category_product_id',$category_id)->get();
+        $all_product_by_category=DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_product_id','=','tbl_category_product.category_product_id')->where('tbl_product.category_product_id',$category_id)->where('tbl_product.product_status','0')->get();
 
         return view('client.pages.category.show_category')->with('category_product',$category_product)->with('publisher',$publisher)->with('all_product_by_category',$all_product_by_category)->with('category',$category);
     }
