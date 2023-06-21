@@ -58,12 +58,14 @@
                                             <p>{{$de_pro->product_desc}}</p>
                                         </div>
                                         <div class="box-tocart d-flex">
-                                            <span>Số lượng</span>
-                                            <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
-                                            <div class="addtocart__actions">
-                                                <button class="tocart" type="submit" title="Add to Cart">Thêm vào giỏ hàng</button>
-                                            </div>
-                                            
+                                            <form action="{{URL::to('add-cart/'.$de_pro->product_id)}}" method="post">{{csrf_field()}}
+                                                <span>Số lượng</span>
+                                                <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
+
+                                                <div class="addtocart__actions">
+                                                    <button class="tocart" type="submit" title="Add to Cart">Thêm vào giỏ hàng</button>
+                                                </div>
+                                            </form>                                           
                                         </div>
                                         <div class="product_meta price-box">
                                             <span class="posted_in">Thể loại: 
@@ -273,7 +275,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="wn__related__product">
+                    {{-- <div class="wn__related__product">
                         <div class="section__title text-center">
                             <h2 class="title__be--2">upsell products</h2>
                         </div>
@@ -319,7 +321,7 @@
                                 
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                @include('client.layouts.menu2')
             </div>
