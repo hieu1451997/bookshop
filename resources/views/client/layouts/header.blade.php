@@ -39,85 +39,74 @@
                 </nav>
             </div>
             <div class="col-md-6 col-sm-6 col-6 col-lg-2">
+                
                 <ul class="header__sidebar__right d-flex justify-content-end align-items-center">
                     <li class="shop_search"><a class="search__active" href="#"></a></li>
                     <li class="wishlist"><a href="#"></a></li>
-                    <li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun">3</span></a>
+                    <li class="shopcart"><a class="cartbox_active" href="#">
+                        @if(Session::has("Cart") != null) 
+                            <span id="quanty-product" class="product_qun">{{Session::get('Cart')->totalQuanty}}</span>
+                        @else
+                            <span id="quanty-product" class="product_qun">0</span>
+                        @endif
+                        </a>
                         <!-- Start Shopping Cart -->
                         <div class="block-minicart minicart__active">
                             <div class="minicart-content-wrapper">
                                 <div class="micart__close">
-                                    <span>close</span>
+                                    <span>Đóng</span>
                                 </div>
-                                <div class="items-total d-flex justify-content-between">
-                                    <span>3 items</span>
-                                    <span>Cart Subtotal</span>
+                                <div id="change-item-cart">
+                                    @if(Session::has("Cart") != null)    
+    
+                                        <div class="single__items">
+                                            {{-- Lấy giá trị của Session --}}
+                                            @foreach(Session::get('Cart')->products as $item_pro)
+                                            <div class="miniproduct">
+                                                
+                                                    <div class="item01 d-flex mt--20">
+                                                        <div class="thumb">
+                                                            <a href="product-details.html"><img src="{{URL::to('uploads/product/'.$item_pro['productInfo']->product_image)}}" alt="product images"></a>
+                                                        </div>
+                                                        <div class="content">
+                                                            <h6><a href="product-details.html">{{$item_pro['productInfo']->product_name}}</a></h6>
+                                                            <span class="product_price">{{number_format($item_pro['productInfo']->product_price).' VNĐ'}}</span>
+                                                            <div class="product_prize d-flex justify-content-between">
+                                                                <span class="qun">Số lượng: {{$item_pro['quanty']}}</span>
+                                                                <ul class="d-flex justify-content-end">
+                                                                    <li class="cart-delete"><i class="zmdi zmdi-delete" data-id="{{$item_pro['productInfo']->product_id}}"></i>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                              
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="items-total d-flex justify-content-between">
+                                            <span>{{Session::get('Cart')->totalQuanty}} sản phẩm</span>
+                                            <span>Tổng tiền</span>
+                                        </div>
+
+                                        <div class="total_amount text-right">
+                                            <span>{{number_format(Session::get('Cart')->totalPrice).' VNĐ'}}</span>
+                                        </div>
+
+                                    @endif
                                 </div>
-                                <div class="total_amount text-right">
-                                    <span>$66.00</span>
-                                </div>
+                               
                                 <div class="mini_action checkout">
-                                    <a class="checkout__btn" href="cart.html">Go to Checkout</a>
-                                </div>
-                                <div class="single__items">
-                                    <div class="miniproduct">
-                                        <div class="item01 d-flex">
-                                            <div class="thumb">
-                                                <a href="product-details.html"><img src="{{URL::to('frontend/images/product/sm-img/1.jpg')}}" alt="product images"></a>
-                                            </div>
-                                            <div class="content">
-                                                <h6><a href="product-details.html">Voyage Yoga Bag</a></h6>
-                                                <span class="prize">$30.00</span>
-                                                <div class="product_prize d-flex justify-content-between">
-                                                    <span class="qun">Qty: 01</span>
-                                                    <ul class="d-flex justify-content-end">
-                                                        <li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-                                                        <li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item01 d-flex mt--20">
-                                            <div class="thumb">
-                                                <a href="product-details.html"><img src="{{URL::to('frontend/images/product/sm-img/3.jpg')}}" alt="product images"></a>
-                                            </div>
-                                            <div class="content">
-                                                <h6><a href="product-details.html">Impulse Duffle</a></h6>
-                                                <span class="prize">$40.00</span>
-                                                <div class="product_prize d-flex justify-content-between">
-                                                    <span class="qun">Qty: 03</span>
-                                                    <ul class="d-flex justify-content-end">
-                                                        <li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-                                                        <li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item01 d-flex mt--20">
-                                            <div class="thumb">
-                                                <a href="product-details.html"><img src="{{URL::to('frontend/images/product/sm-img/2.jpg')}}" alt="product images"></a>
-                                            </div>
-                                            <div class="content">
-                                                <h6><a href="product-details.html">Compete Track Tote</a></h6>
-                                                <span class="prize">$40.00</span>
-                                                <div class="product_prize d-flex justify-content-between">
-                                                    <span class="qun">Qty: 03</span>
-                                                    <ul class="d-flex justify-content-end">
-                                                        <li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-                                                        <li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a class="checkout__btn" href="cart.html">Thanh toán</a>
                                 </div>
                                 <div class="mini_action cart">
-                                    <a class="cart__btn" href="cart.html">View and edit cart</a>
+                                    <a class="cart__btn" href="{{URL::to('/view-cart')}}">Xem giỏ hàng</a>
                                 </div>
                             </div>
                         </div>
                         <!-- End Shopping Cart -->
                     </li>
+                    
                     <li class="setting__bar__icon"><a class="setting__active" href="#"></a>
                         <div class="searchbar__content setting__block">
                             <div class="content-inner">

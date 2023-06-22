@@ -66,4 +66,6 @@ Route::post('/update-product/{product_id}','ProductController@update');
 
 Route::get('/delete-product/{product_id}','ProductController@delete');
 // cart
-Route::post('/add-cart/{product_id}','CartController@AddCart');
+Route::get('/add-cart/{product_id}','CartController@AddCart');
+Route::get('/delete-item-cart/{product_id}','CartController@DeleteItemCart');
+Route::get('/view-cart','CartController@ViewCart');

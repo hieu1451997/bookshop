@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
-
+use App\Cart;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;

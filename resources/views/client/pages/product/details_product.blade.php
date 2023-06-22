@@ -58,14 +58,14 @@
                                             <p>{{$de_pro->product_desc}}</p>
                                         </div>
                                         <div class="box-tocart d-flex">
-                                            <form action="{{URL::to('add-cart/'.$de_pro->product_id)}}" method="post">{{csrf_field()}}
+                                           
                                                 <span>Số lượng</span>
                                                 <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
 
                                                 <div class="addtocart__actions">
-                                                    <button class="tocart" type="submit" title="Add to Cart">Thêm vào giỏ hàng</button>
+                                                    <button class="tocart" type="submit" onclick="AddCart({{$de_pro->product_id}})" title="Add to Cart">Thêm vào giỏ hàng</button>
                                                 </div>
-                                            </form>                                           
+                                                                                  
                                         </div>
                                         <div class="product_meta price-box">
                                             <span class="posted_in">Thể loại: 

@@ -135,6 +135,50 @@
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/js/plugins.js') }}"></script>
     <script src="{{ asset('frontend/js/active.js') }}"></script>
-    
+    <script>
+        function AddCart(product_id){
+            //console.log(product_id);
+            $.ajax({
+                url:'http://localhost/bookshop/public/add-cart/'+product_id,
+                type:'GET',
+            }).done(function(response){
+                console.log(response);
+                RenderCart(response);
+                alertify.success('Đã thêm vào giỏ hàng');
+            });
+        }
+        $("#change-item-cart").on("click",".cart-delete i",function(){
+            $.ajax({
+                url:'http://localhost/bookshop/public/delete-item-cart/'+$(this).data("id"),
+                type:'GET',
+            }).done(function(response){
+                console.log(response);
+                RenderCart(response);
+                alertify.success('Đã xóa sản phẩm');
+            });
+            
+        });
+        function RenderCart(response){
+            $("#change-item-cart").empty();
+            $("#change-item-cart").html(response);           
+            
+             if($("#total-quanty-cart").val() != null){
+                $("#quanty-product").text($("#total-quanty-cart").val()); 
+             } else{
+                $("#quanty-product").text(0);
+             }        
+        }
+
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 </body>
 </html>
