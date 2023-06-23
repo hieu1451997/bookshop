@@ -54,19 +54,6 @@
                                         <div class="price-box">
                                             <span>{{number_format($de_pro->product_price).' VNĐ'}}</span>
                                         </div>
-                                        <div class="product__overview">
-                                            <p>{{$de_pro->product_desc}}</p>
-                                        </div>
-                                        <div class="box-tocart d-flex">
-                                           
-                                                <span>Số lượng</span>
-                                                <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
-
-                                                <div class="addtocart__actions">
-                                                    <button class="tocart" type="submit" onclick="AddCart({{$de_pro->product_id}})" title="Add to Cart">Thêm vào giỏ hàng</button>
-                                                </div>
-                                                                                  
-                                        </div>
                                         <div class="product_meta price-box">
                                             <span class="posted_in">Thể loại: 
                                                 <a href="{{URL::to('/danh-muc-san-pham/'.$de_pro->category_product_id)}}">{{$de_pro->category_product_name}}</a> 
@@ -76,6 +63,21 @@
                                             <span class="posted_in">NXB: 
                                                 <a href="{{URL::to('/nha-xuat-ban/'.$de_pro->publisher_id)}}">{{$de_pro->publisher_name}}</a> 
                                             </span>
+                                        </div>
+                                        <div class="product__overview">
+                                            <p>{{$de_pro->product_desc}}</p>
+                                        </div>
+                                        
+                                        
+                                        <div class="box-tocart d-flex">
+                                           
+                                                {{-- <span>Số lượng</span>
+                                                <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number"> --}}
+
+                                                <div class="addtocart__actions">
+                                                    <button class="tocart" type="submit" onclick="AddCart({{$de_pro->product_id}})" title="Add to Cart">Thêm vào giỏ hàng</button>
+                                                </div>
+                                                                                  
                                         </div>
                                         <div class="product-share">
                                             <ul>

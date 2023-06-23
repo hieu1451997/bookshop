@@ -158,6 +158,24 @@
             });
             
         });
+        function DeleteItemListCart(id){
+            $.ajax({
+                url:'http://localhost/bookshop/public/delete-item-list-cart/'+id,
+                type:'GET',
+            }).done(function(response){
+                console.log(response);
+                $("#list-item-cart").empty();
+                $("#list-item-cart").html(response);
+                
+                if($("#total-quanty-cart-2").val() != null){
+                    $("#quanty-product").text($("#total-quanty-cart-2").val()); 
+                 } else{
+                    $("#quanty-product").text(0);
+                 }
+                 
+                alertify.success('Đã xóa sản phẩm');
+            });
+        }
         function RenderCart(response){
             $("#change-item-cart").empty();
             $("#change-item-cart").html(response);           
@@ -167,6 +185,24 @@
              } else{
                 $("#quanty-product").text(0);
              }        
+        }
+        function SaveItemListCart(id){
+            $.ajax({
+                url:'http://localhost/bookshop/public/save-item-list-cart/'+id+'/'+$("#quanty-item-"+id).val(),
+                type:'GET',
+            }).done(function(response){
+                console.log(response);
+                $("#list-item-cart").empty();
+                $("#list-item-cart").html(response);
+                //RenderCart(response);
+                alertify.success('Đã cập nhật sản phẩm');
+                if($("#total-quanty-cart-2").val() != null){
+                    $("#quanty-product").text($("#total-quanty-cart-2").val()); 
+                 } else{
+                    $("#quanty-product").text(0);
+                 }
+                 //AddCart(id);
+            });
         }
 
     </script>

@@ -31,6 +31,7 @@ class CartController extends Controller
             $request->session()->forget('Cart');// nếu không tồn tại xóa bỏ luôn
         }
         return view('client.pages.Cart.cart');
+
     }
 
     public function ViewCart(){
@@ -38,5 +39,31 @@ class CartController extends Controller
         $publisher=DB::table('tbl_publisher')->where('publisher_status','0')->orderby('publisher_id','desc')->get();
         
         return view('client.pages.Cart.view_cart')->with('category_product',$category_product)->with('publisher',$publisher);
+    }
+    public function DeleteItemListCart(Request $request,$product_id){
+        $category_product=DB::table('tbl_category_product')->where('category_product_status','0')->orderby('category_product_id','desc')->get();
+        $publisher=DB::table('tbl_publisher')->where('publisher_status','0')->orderby('publisher_id','desc')->get();
+
+        $oldCart= Session('Cart') ? Session('Cart') : null;
+        $newCart= new Cart($oldCart);
+        $newCart->DeleteItemCart($product_id);
+        if(count($newCart->products)>0){
+            $request->session()->put('Cart',$newCart);
+        }else{
+            $request->session()->forget('Cart');// nếu không tồn tại xóa bỏ luôn
+        }
+        return view('client.pages.Cart.list_cart')->with('category_product',$category_product)->with('publisher',$publisher);
+
+    }
+    public function SaveItemListCart(Request $request,$product_id,$quanty){
+
+        $oldCart= Session('Cart') ? Session('Cart') : null;
+        $newCart= new Cart($oldCart);
+        $newCart->UpdateItemCart($product_id,$quanty);
+        
+        $request->session()->put('Cart',$newCart);
+        
+        return view('client.pages.Cart.list_cart');
+
     }
 }

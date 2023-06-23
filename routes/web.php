@@ -66,6 +66,10 @@ Route::post('/update-product/{product_id}','ProductController@update');
 
 Route::get('/delete-product/{product_id}','ProductController@delete');
 // cart
+//cart header
 Route::get('/add-cart/{product_id}','CartController@AddCart');
 Route::get('/delete-item-cart/{product_id}','CartController@DeleteItemCart');
+//page view_cart.blade.php
 Route::get('/view-cart','CartController@ViewCart');
+Route::get('/delete-item-list-cart/{product_id}','CartController@DeleteItemListCart');
+Route::get('/save-item-list-cart/{product_id}/{quanty}','CartController@SaveItemListCart');

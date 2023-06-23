@@ -5409,7 +5409,7 @@ h3.widget-title-modal {
   text-transform: uppercase; }
 .wnro__table tbody td.product-remove a {
   color: #3f3f3f;
-  display: block;
+/*   display: block; */
   font-weight: 700;
   height: 1em;
   line-height: 1;
@@ -5419,6 +5419,10 @@ h3.widget-title-modal {
   padding-right: 0;
   text-align: center;
   width: 40px; }
+.wnro__table tbody td.product-save {
+padding-right: 0;
+text-align: center;
+width: 40px; }
 .product-thumbnail {
   padding: 25px 0; }
 .product-name a {
