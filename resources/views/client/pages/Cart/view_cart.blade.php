@@ -89,7 +89,7 @@
                                 </ul>
                             </div>
                             <div class="cart__total__amount">                               
-                                    <a href="#" style=" width: 100%;text-align: center;"><span>Thanh Toán</span></a>
+                                    <a href="{{URL::to('/login-check')}}" style=" width: 100%;text-align: center;"><span>Thanh Toán</span></a>
                             </div>
                             @endif
                         </div>
