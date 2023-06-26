@@ -111,18 +111,32 @@
                         <div class="searchbar__content setting__block">
                             <div class="content-inner">
                                 <div class="switcher-currency">
-                                    <strong class="label switcher-label">
-                                        <span>Tài khoản</span>
-                                    </strong>
-                                    <div class="switcher-options">
-                                        <div class="switcher-currency-trigger">
-                                            <div class="setting__menu">
-                                                <span><a href="#">Đăng nhập</a></span>
-                                                <span><a href="#">Đăng ký</a></span>
-                                                
+                                    
+                                    @if(Session::get('customer_name') !=null)
+                                        <strong class="label switcher-label">
+                                            <span>{{Session::get('customer_name')}}</span>
+                                        </strong>
+                                        <div class="switcher-options">
+                                            <div class="switcher-currency-trigger">
+                                                <div class="setting__menu">
+                                                    <span><a href="#">Thông tin tài khoản</a></span>
+                                                    <span><a href="{{URL::to('/logout-customer')}}">Đăng xuất</a></span> 
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @else
+                                        <strong class="label switcher-label">
+                                            <span>Tài khoản</span>
+                                        </strong>
+                                        <div class="switcher-options">
+                                            <div class="switcher-currency-trigger">
+                                                <div class="setting__menu">
+                                                    <span><a href="{{URL::to('/view-login-customer')}}">Đăng nhập</a></span>
+                                                    <span><a href="{{URL::to('/view-login-customer')}}">Đăng ký</a></span> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -73,8 +73,11 @@ Route::get('/delete-item-cart/{product_id}','CartController@DeleteItemCart');
 Route::get('/view-cart','CartController@ViewCart');
 Route::get('/delete-item-list-cart/{product_id}','CartController@DeleteItemListCart');
 Route::get('/save-item-list-cart/{product_id}/{quanty}','CartController@SaveItemListCart');
-
-// Account
-Route::get('/login-check','CheckoutController@login_checkout');
-Route::post('/add-customer','CheckoutController@add_customer');
-Route::get('/checkout','CheckoutController@checkout');
+//Checkout
+Route::get('/view-checkout','CheckoutController@checkout');
+// Customer
+Route::get('/view-login-customer','CustomerController@view_login_customer');
+Route::post('/add-customer','CustomerController@add_customer');
+Route::post('/login-customer','CustomerController@login_customer');
+Route::get('/logout-customer','CustomerController@logout_customer');
+//Route::get('/checkout','CheckoutController@checkout');

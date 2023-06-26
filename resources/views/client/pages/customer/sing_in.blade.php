@@ -30,20 +30,28 @@
 	<!-- Start My Account Area -->
 	<section class="my_account_area pt--80 pb--55 bg--white">
 		<div class="container">
+			
 			<div class="row">
 				<div class="col-lg-6 col-12">
 					<div class="my__account__wrapper">
 						<h3 class="account__title">Đăng nhập</h3>
-						<form action="#">
+						<?php  
+							$message = Session::get('message');
+							if ($message) {
+								echo '<span class="text-alert" style="color: red;">'.$message.'</span>';
+								Session::put('message',null);
+							}
+						?>
+						<form action="{{URL::to('/login-customer')}}" method="post">
 							{{csrf_field()}}
 							<div class="account__form">
 								<div class="input__box">
 									<label>Tài khoản hặc Email <span>*</span></label>
-									<input type="text" name="email_account">
+									<input type="text" name="customer_email">
 								</div>
 								<div class="input__box">
 									<label>Mật khẩu<span>*</span></label>
-									<input type="password" name="password_account">
+									<input type="password" name="customer_password">
 								</div>
 								<div class="form__btn">
 									<button type="submit">Đăng nhập</button>
