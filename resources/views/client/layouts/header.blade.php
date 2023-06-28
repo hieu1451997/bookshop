@@ -97,7 +97,7 @@
                                 </div>
                                
                                 <div class="mini_action checkout">
-                                    <a class="checkout__btn" href="cart.html">Thanh toán</a>
+                                    <a class="checkout__btn" href="{{URL::to('/view-checkout')}}">Thanh toán</a>
                                 </div>
                                 <div class="mini_action cart">
                                     <a class="cart__btn" href="{{URL::to('/view-cart')}}">Xem giỏ hàng</a>

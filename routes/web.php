@@ -12,11 +12,8 @@
 */
 // frontend
 Route::get('','HomeController@index');
-
 Route::get('/danh-muc-san-pham/{category_product_id}','CategoryProduct@show_category_home');
-
 Route::get('/nha-xuat-ban/{publisher_id}','Publisher@show_publisher_home');
-
 Route::get('/chi-tiet-san-pham/{product_id}','ProductController@details_product');
 
 
@@ -26,9 +23,12 @@ Route::get('/chi-tiet-san-pham/{product_id}','ProductController@details_product'
 Route::get('/admin-login','AdminController@login');
 //logout admin
 Route::get('/logout','AdminController@logout');
-
 Route::get('/dashboard','AdminController@index');
 Route::post('/dashboard','AdminController@dashboard');
+
+//order
+Route::get('/all-order','OrderController@manage_order');
+Route::get('/view-order/{order_id}','OrderController@view_order');
 
 //category-product
 

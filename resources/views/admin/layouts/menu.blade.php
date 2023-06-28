@@ -9,7 +9,15 @@
                         <span>Tổng quan</span>
                     </a>
                 </li>
-                
+                 <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Đơn hàng </span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{ URL::to('/all-order') }}">Danh sách đơn hàng</a></li>
+                    </ul>
+                </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>

@@ -32,6 +32,13 @@
 	     	<div class="row">
 				<div class="col-lg-12">
 					<div class="wn_checkout_wrap">
+						<?php  
+							$message = Session::get('message');
+							if ($message) {
+								echo '<span class="text-alert" style="color: red;">'.$message.'</span>';
+								Session::put('message',null);
+							}
+						?>
 						<div class="checkout_info">
 							<span>Vui lòng đăng nhập để mua hàng. </span>
 							<a class="showlogin" href="#">Đăng nhập</a>
@@ -101,7 +108,7 @@
 						</div>					
 					</div>
 					<div class="wn__accountbox">
-						<input class="input-checkbox" name="payment_method" value="1" type="checkbox">
+						<input class="input-checkbox" name="payment_method" value="1" type="checkbox" checked>
 						<span>Thanh toán khi nhận hàng</span>
 					</div>				
 				</div>

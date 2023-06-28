@@ -34,42 +34,54 @@ class CheckoutController extends Controller
         }
      }
    public function check_out(Request $request){
-      //Insert tbl_shipping
-      $data_shipping=array();
-      $data_shipping['customer_id']=Session::get('customer_id');
-      $data_shipping['shipping_name']=$request->shipping_name;
-      $data_shipping['shipping_email']=$request->shipping_email;
-      $data_shipping['shipping_phone']=$request->shipping_phone;
-      $data_shipping['shipping_address']=$request->shipping_address;
-      $shipping_id=DB::table('tbl_shipping')->insertGetId($data_shipping);
-      //dd($data_shipping);
+      $cus_id= Session::get('customer_id');
+         if($cus_id){
+            //Insert tbl_shipping
+            $data_shipping=array();
+            $data_shipping['customer_id']=Session::get('customer_id');
+            $data_shipping['shipping_name']=$request->shipping_name;
+            $data_shipping['shipping_email']=$request->shipping_email;
+            $data_shipping['shipping_phone']=$request->shipping_phone;
+            $data_shipping['shipping_address']=$request->shipping_address;
+            $shipping_id=DB::table('tbl_shipping')->insertGetId($data_shipping);
+            //dd($data_shipping);
 
-      //Insert tbl_payment
-      $data_payment=array();
-      $data_payment['payment_method']=$request->payment_method;
-      $data_payment['payment_status']='Đang chờ xử lý';
-      $payment_id=DB::table('tbl_payment')->insertGetId($data_payment);
-      //dd($data_payment);
+            //Insert tbl_payment
+            $data_payment=array();
+            $data_payment['payment_method']=$request->payment_method;
+            $data_payment['payment_status']='Đang chờ xử lý';
+            $payment_id=DB::table('tbl_payment')->insertGetId($data_payment);
+            //dd($data_payment);
 
-      //Insert tbl_order
-      $data_order=array();
-      $data_order['customer_id']=Session::get('customer_id');
-      $data_order['shipping_id']=$shipping_id;
-      $data_order['payment_id']=$payment_id;
-      $data_order['order_total']=Session('Cart')->totalPrice;
-      $data_order['order_status']='Đang chờ xử lý';
-      $order_id=DB::table('tbl_order')->insertGetId($data_order);
-      //dd($data_order);
+            //Insert tbl_order
+            $data_order=array();
+            $data_order['customer_id']=Session::get('customer_id');
+            $data_order['shipping_id']=$shipping_id;
+            $data_order['payment_id']=$payment_id;
+            $data_order['order_total']=Session('Cart')->totalPrice;
+            $data_order['order_status']='Đang chờ xử lý';
+            $order_id=DB::table('tbl_order')->insertGetId($data_order);
+            //dd($data_order);
 
-      //Insert tbl_order_details
-      foreach(Session::get('Cart')->products as $item_pro){
-         $data_order_details['order_id']=$order_id;
-         $data_order_details['product_id']=$item_pro['productInfo']->product_id;
-         $data_order_details['product_name']=$item_pro['productInfo']->product_name;
-         $data_order_details['product_price']=$item_pro['productInfo']->product_price;
-         $data_order_details['product_quantity']=$item_pro['quanty'];
-         DB::table('tbl_order_details')->insert($data_order_details);
-      }
-      echo'Thành công';
+            //Insert tbl_order_details
+            foreach(Session::get('Cart')->products as $item_pro){
+               $data_order_details['order_id']=$order_id;
+               $data_order_details['product_id']=$item_pro['productInfo']->product_id;
+               $data_order_details['product_name']=$item_pro['productInfo']->product_name;
+               $data_order_details['product_price']=$item_pro['productInfo']->product_price;
+               $data_order_details['product_quantity']=$item_pro['quanty'];
+               DB::table('tbl_order_details')->insert($data_order_details);
+            }
+            if($data_payment['payment_method']==1){
+               session()->forget('Cart');
+               $category_product=DB::table('tbl_category_product')->where('category_product_status','0')->orderby('category_product_id','desc')->get();
+               $publisher=DB::table('tbl_publisher')->where('publisher_status','0')->orderby('publisher_id','desc')->get();
+               return view('client.pages.checkout.handcash')->with('category_product',$category_product)->with('publisher',$publisher);
+            }
+        }else{
+            Session::put('message','Vui lòng đăng nhập để thanh toán');
+            return Redirect::to('/view-checkout');
+        }
+      
    }
 }
