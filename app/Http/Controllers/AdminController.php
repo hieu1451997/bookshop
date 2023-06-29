@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-
+use App\Admin;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
@@ -30,9 +30,9 @@ class AdminController extends Controller
     public function dashboard(Request $request){
         $admin_email = $request->admin_email;
         $admin_password = md5($request->admin_password);
-
-        $result = DB::table('tbl_admin')->where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
-
+        // $result = DB::table('tbl_admin')->where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
+        $result=Admin::where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
+        //dd($result);
         if ($result) {
             Session::put('admin_name',$result->admin_name);
             Session::put('admin_id',$result->admin_id); 

@@ -12,7 +12,7 @@
 */
 // frontend
 Route::get('','HomeController@index');
-Route::get('/danh-muc-san-pham/{category_product_id}','CategoryProduct@show_category_home');
+Route::get('/danh-muc-san-pham/{category_product_id}','CategoryProductController@show_category_home');
 Route::get('/nha-xuat-ban/{publisher_id}','Publisher@show_publisher_home');
 Route::get('/chi-tiet-san-pham/{product_id}','ProductController@details_product');
 
@@ -32,15 +32,15 @@ Route::get('/view-order/{order_id}','OrderController@view_order');
 
 //category-product
 
-Route::get('/add-category-product','CategoryProduct@add');
-Route::post('/save-category-product','CategoryProduct@save');
+Route::get('/add-category-product','CategoryProductController@add');
+Route::post('/save-category-product','CategoryProductController@save');
 
-Route::get('/all-category-product','CategoryProduct@all');
+Route::get('/all-category-product','CategoryProductController@all');
 
-Route::get('/edit-category-product/{category_product_id}','CategoryProduct@edit');
-Route::post('/update-category-product/{category_product_id}','CategoryProduct@update');
+Route::get('/edit-category-product/{category_product_id}','CategoryProductController@edit');
+Route::post('/update-category-product/{category_product_id}','CategoryProductController@update');
 
-Route::get('/delete-category-product/{category_product_id}','CategoryProduct@delete');
+Route::get('/delete-category-product/{category_product_id}','CategoryProductController@delete');
 
 //Publisher-- nha xuat ban
 

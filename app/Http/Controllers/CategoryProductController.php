@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
-
+use App\CategoryProduct;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 
-class CategoryProduct extends Controller
+class CategoryProductController extends Controller
 {
     //admin
     public function AuthLogin(){
@@ -29,20 +29,24 @@ class CategoryProduct extends Controller
 
     public function all(){
         $this->AuthLogin();
-        $all_category_product= DB::table('tbl_category_product')->get();
-
+        //$all_category_product= DB::table('tbl_category_product')->get();
+        $all_category_product=CategoryProduct::all();
         return view('admin.pages.category.all',compact("all_category_product"));
     }
 
     public function save(Request $request){
         $this->AuthLogin();
-        $data=array();
-        $data['category_product_name'] = $request->category_product_name;
-        $data['category_product_desc'] = $request->category_product_desc;
-        $data['category_product_status'] = $request->category_product_status;
+        // $data=array();
+        // $data['category_product_name'] = $request->category_product_name;
+        // $data['category_product_desc'] = $request->category_product_desc;
+        // $data['category_product_status'] = $request->category_product_status;
 
-        DB::table('tbl_category_product')->insert($data);
-
+        // DB::table('tbl_category_product')->insert($data);
+        $data=new CategoryProduct;
+        $data->category_product_name=$request->category_product_name;
+        $data->category_product_desc=$request->category_product_desc;
+        $data->category_product_status=$request->category_product_status;
+        $data->save();
         Session::put('message','Them danh muc san pham thanh cong');
         return Redirect::to('/add-category-product');
 
@@ -50,28 +54,33 @@ class CategoryProduct extends Controller
 
     public function edit($category_product_id){
         $this->AuthLogin();
-        $edit_category_product= DB::table('tbl_category_product')->where('category_product_id',$category_product_id)->get();
-
+        // $edit_category_product= DB::table('tbl_category_product')->where('category_product_id',$category_product_id)->get();
+        $edit_category_product=CategoryProduct::where('category_product_id',$category_product_id)->get();
         return view('admin.pages.category.edit')->with('edit_category_product',$edit_category_product);   
     }
 
-    public function update(Request $request, $category_product_id){
+    public function update(Request $request, $category_product_id){     
         $this->AuthLogin();
-        $data=array();
-        $data['category_product_name'] = $request->category_product_name;
-        $data['category_product_desc'] = $request->category_product_desc;
-        $data['category_product_status'] = $request->category_product_status;
+        // $data=array();
+        // $data['category_product_name'] = $request->category_product_name;
+        // $data['category_product_desc'] = $request->category_product_desc;
+        // $data['category_product_status'] = $request->category_product_status;
 
-        DB::table('tbl_category_product')->where('category_product_id',$category_product_id)->update($data);
-
+        // DB::table('tbl_category_product')->where('category_product_id',$category_product_id)->update($data);
+        $data=CategoryProduct::find($category_product_id);
+        $data->category_product_name=$request->category_product_name;
+        $data->category_product_desc=$request->category_product_desc;
+        $data->category_product_status=$request->category_product_status;
+        $data->save();
         Session::put('message','Cập nhật danh mục sản phẩm thành công');
         return Redirect::to('/edit-category-product/'.$category_product_id);
 
     }
     public function delete($category_product_id){
         $this->AuthLogin();
-        DB::table('tbl_category_product')->where('category_product_id',$category_product_id)->delete();
-
+        //DB::table('tbl_category_product')->where('category_product_id',$category_product_id)->delete();
+        $cate_pro=CategoryProduct::where('category_product_id',$category_product_id)->first();
+        $cate_pro->delete();
         Session::put('message','Xóa danh mục sản phẩm thành công');
         return Redirect::to('/all-category-product');
 
