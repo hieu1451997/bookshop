@@ -13,7 +13,7 @@
                     <ul class="meninmenu d-flex justify-content-start">
                         <li class="drop with--one--item"><a href="{{URL::to('/')}}">Trang chủ</a></li>
                         
-                        <li class="drop"><a href="shop-grid.html">Sách</a>
+                        <li class="drop"><a href="#">Sách</a>
                             <div class="megamenu mega02">
                                 <ul class="item item02">
                                     <li class="title">Thể loại</li>

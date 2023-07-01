@@ -33,5 +33,10 @@ return [
     'sparkpost' => [
         'secret' => env('SPARKPOST_SECRET'),
     ],
+    'facebook' => [
+        'client_id' => '1921226874943480',  //client face của bạn
+        'client_secret' => 'e7c1d2a88cd8768c767c5470be583fd8',  //client app service face của bạn
+        'redirect' => 'https://bookshop.com/bookshop/public/view-login-customer/callback' //callback trả về
+    ],                
 
 ];

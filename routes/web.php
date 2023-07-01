@@ -74,6 +74,10 @@ Route::get('/view-cart','CartController@ViewCart');
 Route::get('/delete-item-list-cart/{product_id}','CartController@DeleteItemListCart');
 Route::get('/save-item-list-cart/{product_id}/{quanty}','CartController@SaveItemListCart');
 
+//Login facebook
+Route::get('/login-facebook','CustomerController@login_facebook');
+Route::get('/view-login-customer/callback','CustomerController@callback_facebook');
+
 // Customer
 Route::get('/view-login-customer','CustomerController@view_login_customer');
 Route::post('/add-customer','CustomerController@add_customer');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Cart;
+use App\Customer;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
@@ -19,9 +20,8 @@ class CheckoutController extends Controller
      public function login_checkout(Request $request){
         $customer_email = $request->customer_email;
         $customer_password = md5($request->customer_password);
-
-        $result = DB::table('tbl_customers')->where('customer_email',$customer_email)->where('customer_password',$customer_password)->first();
-
+        //$result = DB::table('tbl_customers')->where('customer_email',$customer_email)->where('customer_password',$customer_password)->first();
+        $result=Customer::where('customer_email',$customer_email)->where('customer_password',$customer_password)->first();
         if ($result) {
             Session::put('customer_name',$result->customer_name);
             Session::put('customer_id',$result->customer_id); 
@@ -44,14 +44,12 @@ class CheckoutController extends Controller
             $data_shipping['shipping_phone']=$request->shipping_phone;
             $data_shipping['shipping_address']=$request->shipping_address;
             $shipping_id=DB::table('tbl_shipping')->insertGetId($data_shipping);
-            //dd($data_shipping);
 
             //Insert tbl_payment
             $data_payment=array();
             $data_payment['payment_method']=$request->payment_method;
             $data_payment['payment_status']='Đang chờ xử lý';
             $payment_id=DB::table('tbl_payment')->insertGetId($data_payment);
-            //dd($data_payment);
 
             //Insert tbl_order
             $data_order=array();
@@ -61,7 +59,6 @@ class CheckoutController extends Controller
             $data_order['order_total']=Session('Cart')->totalPrice;
             $data_order['order_status']='Đang chờ xử lý';
             $order_id=DB::table('tbl_order')->insertGetId($data_order);
-            //dd($data_order);
 
             //Insert tbl_order_details
             foreach(Session::get('Cart')->products as $item_pro){
