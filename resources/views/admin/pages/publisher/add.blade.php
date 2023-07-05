@@ -14,14 +14,16 @@
 	            
 	        </header>
 
-	        <div class="panel-body">
-	        	<?php  
-					$message = Session::get('message');
-					if ($message) {
-						echo '<div class="form-group><span class="text-alert">'.$message.'</span></div>';
-						Session::put('message',null);
-					}
-				?>
+	        <div class="panel-body"> 
+					
+				@if (Session::has('message')) 
+					<div class="alert alert-success">
+						{{Session::get('message')}}
+						{{Session::put('message',null)}}
+					</div>
+				
+				@endif
+				
 	            <div class=" form">
 	                <form class="cmxform form-horizontal " id="commentForm" method="post" action="{{ URL::to('/save-publisher') }}" novalidate="novalidate">
 	                	{{csrf_field()}}

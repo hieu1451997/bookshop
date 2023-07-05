@@ -63,10 +63,6 @@
 								<div class="footer__content" style="margin-top: 20px;">
 		                            <ul class="social__net social__net--2 d-flex justify-content-center">
 		                                <li><a href="{{URL::to('/login-facebook')}}"><i class="bi bi-facebook"></i></a></li>
-		                                <li><a href="#"><i class="bi bi-google"></i></a></li>
-		                                <li><a href="#"><i class="bi bi-twitter"></i></a></li>
-		                                <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
-		                                <li><a href="#"><i class="bi bi-youtube"></i></a></li>
 		                            </ul>
 		                        </div>
 								<a class="forget_pass" href="#">Quên mật khẩu ?</a>

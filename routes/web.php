@@ -28,7 +28,9 @@ Route::post('/dashboard','AdminController@dashboard');
 
 //order
 Route::get('/all-order','OrderController@manage_order');
-Route::get('/view-order/{order_id}','OrderController@view_order');
+Route::get('/view-order/{order_code}','OrderController@view_order');
+//In PDF
+Route::get('/print-pdf/{checkout_code}','OrderController@print_pdf');
 
 //category-product
 
@@ -77,6 +79,7 @@ Route::get('/save-item-list-cart/{product_id}/{quanty}','CartController@SaveItem
 //Login facebook
 Route::get('/login-facebook','CustomerController@login_facebook');
 Route::get('/view-login-customer/callback','CustomerController@callback_facebook');
+
 
 // Customer
 Route::get('/view-login-customer','CustomerController@view_login_customer');

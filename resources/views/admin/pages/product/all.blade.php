@@ -53,13 +53,13 @@
               </tr>
             </thead>
             <tbody>
-              <?php  
-                $message = Session::get('message');
-                if ($message) {
-                  echo '<div class="form-group><span class="text-alert">'.$message.'</span></div>';
-                  Session::put('message',null);
-                }
-              ?>
+              @if (Session::has('message')) 
+                <div class="alert alert-success">
+                  {{Session::get('message')}}
+                  {{Session::put('message',null)}}
+                </div>
+              
+              @endif
               @foreach($all_product as $key =>$pro)
                 <tr>
                   <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>

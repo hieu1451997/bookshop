@@ -1,15 +1,17 @@
 <div class="slider-area brown__nav slider--15 slide__activation slide__arrow01 owl-carousel owl-theme">
     <!-- Start Single Slide -->
+    
     <div class="slide animation__style10 bg-image--1 fullscreen align__center--left">
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="slider__content">
                         <div class="contentbox">
-                            <h2>Buy <span>your </span></h2>
-                            <h2>favourite <span>Book </span></h2>
-                            <h2>from <span>Here </span></h2>
-                            <a class="shopbtn" href="#">shop now</a>
+                            <h2>Mua <span>sách </span></h2>
+                            <h2>yêu thích <span>của bạn </span></h2>
+                            <h2>tại <span>đây </span></h2>
+                            <a class="shopbtn" href="#">Mua ngay</a>
                         </div>
                     </div>
                 </div>
@@ -17,22 +19,36 @@
         </div>
     </div>
     <!-- End Single Slide -->
-    <!-- Start Single Slide -->
-    <div class="slide animation__style10 bg-image--7 fullscreen align__center--left">
+    <div class="slide animation__style10 bg-image--2 fullscreen align__center--left">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="slider__content">
                         <div class="contentbox">
-                            <h2>Buy <span>your </span></h2>
-                            <h2>favourite <span>Bookssssssss </span></h2>
-                            <h2>from <span>Here </span></h2>
-                            <a class="shopbtn" href="#">shop now</a>
+                            <h2>Mua <span>sách </span></h2>
+                            <h2>yêu thích <span>của bạn </span></h2>
+                            <h2>tại <span>đây </span></h2>
+                            <a class="shopbtn" href="#">Mua ngay</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Single Slide -->
+    <div class="slide animation__style10 bg-image--3 fullscreen align__center--left">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="slider__content">
+                        <div class="contentbox">
+                            <h2>Mua <span>sách </span></h2>
+                            <h2>yêu thích <span>của bạn </span></h2>
+                            <h2>tại <span>đây </span></h2>
+                            <a class="shopbtn" href="#">Mua ngay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -32,51 +32,9 @@
 	     	<div class="row">
 				<div class="col-lg-12">
 					<div class="wn_checkout_wrap">
-						<?php  
-							$message = Session::get('message');
-							if ($message) {
-								echo '<span class="text-alert" style="color: red;">'.$message.'</span>';
-								Session::put('message',null);
-							}
-						?>
 						<div class="checkout_info">
 							<span>Vui lòng đăng nhập để mua hàng. </span>
-							<a class="showlogin" href="#">Đăng nhập</a>
-						</div>
-						<div class="checkout_login">
-							<?php  
-								$message = Session::get('message');
-								if ($message) {
-									echo '<span class="text-alert" style="color: red;">'.$message.'</span>';
-									Session::put('message',null);
-								}
-							?>
-							<form class="wn__checkout__form" action="{{URL::to('/login-checkout')}}" method="post">
-								{{csrf_field()}}
-								<p>Nếu bạn chưa có tài khoản hãy đăng ký <a style="color: #e59285;" href="{{URL::to('/view-login-customer')}}">tại đây</a></p>
-
-								<div class="input__box">
-									<label>Email <span>*</span></label>
-									<input type="text" name="customer_email">
-								</div>
-
-								<div class="input__box">
-									<label>Mật khẩu <span>*</span></label>
-									<input type="password" name="customer_password">
-								</div>
-								<div class="form__btn">
-									<button type="submit">Đăng nhập</button>
-									<label class="label-for-checkbox">
-										<input id="rememberme" name="rememberme" value="forever" type="checkbox">
-										<span>Ghi nhớ đăng nhập</span>
-									</label>
-
-								</div>
-								<div style="margin-top: 10px;">
-									<span><a href="#">Quên mật khẩu?</a></span>
-								</div>
-								
-							</form>
+							<a style="color: #e59285;" href="{{URL::to('/view-login-customer')}}">Đăng nhập</a>
 						</div>
 					</div>
 				</div>
