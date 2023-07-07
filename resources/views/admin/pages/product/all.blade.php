@@ -48,8 +48,9 @@
                 <th>Mô tả</th>
                 <th>Tóm tắt</th>
                 <th>Giá</th>
+                <th>SL</th>
                 <th>Hiện/Ẩn</th>
-                <th style="width:30px;"></th>
+                <th style="width:30px;">Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -70,6 +71,7 @@
                   <td>{{ $pro->product_desc }}</td>
                   <td>{{ $pro->product_content }}</td>
                   <td>{{ $pro->product_price }}</td>
+                  <td>{{ $pro->product_quantity }}</td>
                   <td>
                     <span class="text-ellipsis">
                         @if ($pro->product_status==0) {{"Hiển thị"}}                    
@@ -89,6 +91,16 @@
               @endforeach
             </tbody>
           </table>
+            <form action="{{url('/import-product')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+              <input type="file" name="file" accept=".xlsx"><br>
+             <input type="submit" value="Nhập excel" name="import_csv" class="btn btn-warning">
+              </form>
+             <form action="{{url('/export-product')}}" method="POST">
+                @csrf
+             <input type="submit" value="Xuất excel" name="export_csv" class="btn btn-success">
+            </form>
+
         </div>
         <footer class="panel-footer">
           <div class="row">

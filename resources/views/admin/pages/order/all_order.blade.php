@@ -41,11 +41,13 @@
                 <td>{{$i++}}</td>
                 <td>{{$val->order_code}}</td>
                 <td>{{$val->created_at}}</td>
-                <td>
+                <td class="order_status">
                   @if($val->order_status==1)
                     Đơn hàng mới
-                  @else
+                  @elseif($val->order_status==2)
                     Đã xử lý
+                  @else
+                    Hủy đơn hàng
                   @endif
                 </td>
                 <td>

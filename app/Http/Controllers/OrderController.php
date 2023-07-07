@@ -13,10 +13,12 @@ use App\Order;
 use App\Shipping;
 use App\OrderDetails;
 use App\Customer;
+use App\Product;
 use PDF;
 
 class OrderController extends Controller
 {
+    //check login
      public function AuthLogin(){
         $admin_id= Session::get('admin_id');
         if($admin_id){
@@ -25,12 +27,50 @@ class OrderController extends Controller
             return Redirect::to('/admin-login')->send();
         }
     }
+    public function update_order(Request $request){
+        //update order
+        $data = $request->all();
+        $order = Order::find($data['order_id']);
+        $order->order_status = $data['order_status'];
+        $order->save();
+
+        //update số lượng trong kho và số lượng đã bán
+        if($order->order_status==2){
+            foreach($data['order_product_id'] as $key => $product_id){
+                $product = Product::find($product_id);
+                $product_quantity = $product->product_quantity;
+                $product_sold = $product->product_sold;
+                foreach($data['quantity'] as $key1 => $qty){
+                    if($key==$key1){
+                        $product->product_quantity = $product_quantity-$qty;
+                        $product->product_sold = $product_sold+$qty;
+                        $product->save();
+                    }
+                }
+            }
+        }elseif($order->order_status==3){
+                foreach($data['order_product_id'] as $key => $product_id){
+                    $product = Product::find($product_id);
+                    $product_quantity = $product->product_quantity;
+                    $product_sold = $product->product_sold;
+                    foreach($data['quantity'] as $key1 => $qty){
+                        if($key==$key1){
+                            $product->product_quantity = $product_quantity+$qty;
+                            $product->product_sold = $product_sold-$qty;
+                            $product->save();
+                        }
+                    }
+                }
+            }
+    }
+    //danh sách order
     public function manage_order(){
         $this->AuthLogin();
         $all_order=Order::orderby('created_at','desc')
          ->limit(8)->get();
         return view('admin.pages.order.all_order')->with(compact('all_order'));
     }
+    // chi tiết order
     public function view_order($order_code){
         $this->AuthLogin();
         $order_details=OrderDetails::where('order_code',$order_code)->get();
@@ -45,8 +85,9 @@ class OrderController extends Controller
 
         $or_de=OrderDetails::with('product')->where('order_code',$order_code)->get();
         
-        return view('admin.pages.order.view_order')->with(compact('order_details','customer','shipping','or_de'));
+        return view('admin.pages.order.view_order')->with(compact('order_details','customer','shipping','or_de','order'));
     }
+    //in file PDF
     public function print_pdf($checkout_code){
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($this->print_order_convert($checkout_code));

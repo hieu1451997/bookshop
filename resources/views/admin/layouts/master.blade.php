@@ -147,6 +147,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		});
 	</script>
+<script type="text/javascript">
+	$('.order_details').change(function() {
+		var order_status = $(this).val();
+		var	order_id = $(this).children(':selected').attr('id');
+		var _token = $('input[name="_token"]').val();
+		
+		//lấy ra số lượng sản phẩm mua trong order details
+		quantity = [];
+		$("input[name='product_sales_quantity']").each(function() {
+			quantity.push($(this).val());
+		});
+		// lấy ra product id
+		order_product_id = [];
+		$("input[name='order_product_id']").each(function() {
+			order_product_id.push($(this).val());
+		});
+		$.ajax({
+			url : '{{url('/update-order')}}',
+			method : 'POST',
+			data :{_token:_token,order_status:order_status,order_id:order_id,quantity:quantity,order_product_id:order_product_id},
+			success:function(data){
+				alert('Cập nhật thành công');
+				location.reload();
+			}
+		});
+
+	});
+</script>
 	<!-- //calendar -->
 </body>
 </html>

@@ -10,7 +10,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 
-class Publisher extends Controller
+class PublisherController extends Controller
 {
     public function AuthLogin(){
         $admin_id= Session::get('admin_id');

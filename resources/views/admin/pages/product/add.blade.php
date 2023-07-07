@@ -68,7 +68,13 @@
                         <div class="form-group ">
 	                        <label for="cname" class="control-label col-lg-3">Giá sản phẩm</label>
 	                        <div class="col-lg-6">
-	                            <input class=" form-control" id="cname" name="product_price" minlength="2" type="text" required="">
+	                            <input class=" form-control" id="cname" name="product_price" minlength="2" type="number" required="">
+	                        </div>
+	                    </div>
+	                    <div class="form-group ">
+	                        <label for="cname" class="control-label col-lg-3">Số lượng</label>
+	                        <div class="col-lg-6">
+	                            <input class=" form-control" id="cname" name="product_quantity" minlength="2" type="number" required="">
 	                        </div>
 	                    </div>
 	                    <div class="form-group">

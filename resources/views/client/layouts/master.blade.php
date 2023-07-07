@@ -139,7 +139,8 @@
         function AddCart(product_id){
             //console.log(product_id);
             $.ajax({
-                url:'http://localhost/bookshop/public/add-cart/'+product_id,
+                // url:'http://localhost/bookshop/public/add-cart/'+product_id,
+                url:'{{url('/add-cart')}}/'+product_id,
                 type:'GET',
             }).done(function(response){
                 console.log(response);
@@ -149,7 +150,8 @@
         }
         $("#change-item-cart").on("click",".cart-delete i",function(){
             $.ajax({
-                url:'http://localhost/bookshop/public/delete-item-cart/'+$(this).data("id"),
+                //url:'http://localhost/bookshop/public/delete-item-cart/'+$(this).data("id"),
+                url:'{{url('/delete-item-cart')}}/'+$(this).data("id"),
                 type:'GET',
             }).done(function(response){
                 console.log(response);
@@ -160,7 +162,8 @@
         });
         function DeleteItemListCart(id){
             $.ajax({
-                url:'http://localhost/bookshop/public/delete-item-list-cart/'+id,
+                //url:'http://localhost/bookshop/public/delete-item-list-cart/'+id,
+                url:'{{url('/delete-item-list-cart')}}/'+id,
                 type:'GET',
             }).done(function(response){
                 console.log(response);
@@ -188,7 +191,8 @@
         }
         function SaveItemListCart(id){
             $.ajax({
-                url:'http://localhost/bookshop/public/save-item-list-cart/'+id+'/'+$("#quanty-item-"+id).val(),
+                //url:'http://localhost/bookshop/public/save-item-list-cart/'+id+'/'+$("#quanty-item-"+id).val(),
+                url:'{{url('/save-item-list-cart')}}/'+id+'/'+$("#quanty-item-"+id).val(),
                 type:'GET',
             }).done(function(response){
                 console.log(response);

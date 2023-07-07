@@ -13,7 +13,7 @@
 // frontend
 Route::get('','HomeController@index');
 Route::get('/danh-muc-san-pham/{category_product_id}','CategoryProductController@show_category_home');
-Route::get('/nha-xuat-ban/{publisher_id}','Publisher@show_publisher_home');
+Route::get('/nha-xuat-ban/{publisher_id}','PublisherController@show_publisher_home');
 Route::get('/chi-tiet-san-pham/{product_id}','ProductController@details_product');
 
 
@@ -27,8 +27,10 @@ Route::get('/dashboard','AdminController@index');
 Route::post('/dashboard','AdminController@dashboard');
 
 //order
+
 Route::get('/all-order','OrderController@manage_order');
 Route::get('/view-order/{order_code}','OrderController@view_order');
+Route::post('/update-order','OrderController@update_order');
 //In PDF
 Route::get('/print-pdf/{checkout_code}','OrderController@print_pdf');
 
@@ -46,15 +48,15 @@ Route::get('/delete-category-product/{category_product_id}','CategoryProductCont
 
 //Publisher-- nha xuat ban
 
-Route::get('/all-publisher','Publisher@all');
+Route::get('/all-publisher','PublisherController@all');
 
-Route::get('/add-publisher','Publisher@add');
-Route::post('/save-publisher','Publisher@save');
+Route::get('/add-publisher','PublisherController@add');
+Route::post('/save-publisher','PublisherController@save');
 
-Route::get('/edit-publisher/{publisher_id}','Publisher@edit');
-Route::post('/update-publisher/{publisher_id}','Publisher@update');
+Route::get('/edit-publisher/{publisher_id}','PublisherController@edit');
+Route::post('/update-publisher/{publisher_id}','PublisherController@update');
 
-Route::get('/delete-publisher/{publisher_id}','Publisher@delete');
+Route::get('/delete-publisher/{publisher_id}','PublisherController@delete');
 
 // Product-- san pham
 
@@ -67,6 +69,10 @@ Route::get('/edit-product/{product_id}','ProductController@edit');
 Route::post('/update-product/{product_id}','ProductController@update');
 
 Route::get('/delete-product/{product_id}','ProductController@delete');
+//xuat nhap file excel
+Route::post('/export-product','ProductController@export_product');
+Route::post('/import-product','ProductController@import_product');
+
 // cart
 //cart header
 Route::get('/add-cart/{product_id}','CartController@AddCart');

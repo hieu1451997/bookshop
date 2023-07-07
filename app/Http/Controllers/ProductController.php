@@ -10,6 +10,9 @@ use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
+use App\Imports\ExcelImport;
+use App\Exports\ExcelExport;
+use Excel;
 
 class ProductController extends Controller
 {
@@ -38,6 +41,7 @@ class ProductController extends Controller
         $data['product_desc']=$request->product_desc;  
         $data['product_content']=$request->product_content;
         $data['product_price']=$request->product_price;  
+        $data['product_quantity']=$request->product_quantity;  
         $data['product_status']=$request->product_status;
         $get_image=$request->file('product_image');
         if ($get_image) {
@@ -86,6 +90,7 @@ class ProductController extends Controller
         $data['product_desc']=$request->product_desc;  
         $data['product_content']=$request->product_content;
         $data['product_price']=$request->product_price;  
+        $data['product_quantity']=$request->product_quantity;  
         $data['product_status']=$request->product_status;
         
 
@@ -138,4 +143,15 @@ class ProductController extends Controller
 
         return view('client.pages.product.details_product')->with('category_product',$category_product)->with('publisher',$publisher)->with('details_product',$details_product)->with('related_product',$related_product);
     }
+    public function export_product(){
+        return Excel::download(new ExcelExport , 'product.xlsx');
+    }
+
+    public function import_product(Request $request){
+        $path = $request->file('file')->getRealPath();
+        Excel::import(new ExcelImport, $path);
+        return back();
+    }
+
+
 }
