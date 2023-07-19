@@ -1,6 +1,13 @@
 {{-- kiểm tra xem có giá trị không --}}
 @if(Session::has("Cart") != null)    
-    
+    <div class="items-total d-flex justify-content-between">
+        <span>{{Session::get('Cart')->totalQuanty}} sản phẩm</span>
+        <span>Tổng tiền</span>
+    </div>
+    <div class="total_amount text-right">
+        <span>{{number_format(Session::get('Cart')->totalPrice).' VNĐ'}}</span>
+    </div>
+    <input hidden id="total-quanty-cart" type="number" value="{{Session::get('Cart')->totalQuanty}}">
     <div class="single__items">
         {{-- Lấy giá trị của Session --}}
         @foreach(Session::get('Cart')->products as $item_pro)
@@ -26,12 +33,4 @@
         </div>
         @endforeach
     </div>
-    <div class="items-total d-flex justify-content-between">
-        <span>{{Session::get('Cart')->totalQuanty}} sản phẩm</span>
-        <span>Tổng tiền</span>
-    </div>
-    <div class="total_amount text-right">
-        <span>{{number_format(Session::get('Cart')->totalPrice).' VNĐ'}}</span>
-    </div>
-    <input hidden id="total-quanty-cart" type="number" value="{{Session::get('Cart')->totalQuanty}}">
 @endif

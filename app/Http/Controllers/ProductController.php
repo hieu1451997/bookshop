@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use File;
 use Session;
+use App\Product;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -131,6 +132,7 @@ class ProductController extends Controller
 
     //client 
     public function details_product($product_id){
+        
         $category_product=DB::table('tbl_category_product')->where('category_product_status','0')->orderby('category_product_id','desc')->get();
 
         $publisher=DB::table('tbl_publisher')->where('publisher_status','0')->orderby('publisher_id','desc')->get();
@@ -140,9 +142,22 @@ class ProductController extends Controller
             $category_id=$value->category_product_id;
         }
         $related_product=DB::table('tbl_product')->join('tbl_category_product','tbl_category_product.category_product_id','=','tbl_product.category_product_id')->join('tbl_publisher','tbl_publisher.publisher_id','=','tbl_product.publisher_id')->where('tbl_category_product.category_product_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->where('tbl_product.product_status','0')->get();
-
+        // echo url()->current();
         return view('client.pages.product.details_product')->with('category_product',$category_product)->with('publisher',$publisher)->with('details_product',$details_product)->with('related_product',$related_product);
     }
+    public function quickview_product(Request $request){
+        $product_id = $request->product_id;
+        $product = Product::find($product_id);
+
+        $output['product_name'] = $product->product_name;
+        $output['product_price'] = number_format($product->product_price).' VNĐ';
+        $output['product_content'] = $product->product_content;
+        $output['product_image'] = '<img with="100%" alt="big images" src="uploads/product/'.$product->product_image.'">';
+        $output['add_cart_quickview'] = '<a href="javascript:;" onclick="AddCart('.$product_id.')">Add to cart</a>';
+        echo json_encode($output);
+    }
+
+    //excel
     public function export_product(){
         return Excel::download(new ExcelExport , 'product.xlsx');
     }

@@ -21,7 +21,7 @@ class ExcelImport implements ToModel
             'product_content'=>$row[3],
             'product_desc'=>$row[4],
             'product_price'=>$row[5],
-            'product_quantity'=>$row[6]
+            'product_quantity'=>$row[6],
             'product_image'=>$row[7],
             'product_status'=>$row[8]
         ]);

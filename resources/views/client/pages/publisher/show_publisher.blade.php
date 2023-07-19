@@ -58,15 +58,12 @@
                                         <div class="product__content content--center">
                                             <h4><a href="{{URL::to('/chi-tiet-san-pham/'.$pro->product_id)}}">{{$pro->product_name}}</a></h4>
                                             <ul class="prize d-flex">
-                                                <li>{{$pro->product_price}} VNĐ</li>
-                                                <li class="old_prize">0 VNĐ</li>
+                                                <li>{{number_format($pro->product_price)}} VNĐ</li>
                                             </ul>
                                             <div class="action">
                                                 <div class="actions_inner">
                                                     <ul class="add_to_links">
-                                                        <li><a class="cart" onclick="AddCart({{$pro->product_id}})"><i class="bi bi-shopping-bag4"></i></a></li>
-                                                        <li><a class="wishlist" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
-                                                        <li><a class="compare" href="#"><i class="bi bi-heart-beat"></i></a></li>
+                                                        <li><a class="cart" onclick="AddCart({{$pro->product_id}})"><i class="bi bi-shopping-cart-full"></a></li>
                                                         <li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
                                                     </ul>
                                                 </div>

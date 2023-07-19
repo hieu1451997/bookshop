@@ -57,66 +57,43 @@
                             <div class="modal-product">
                                 <!-- Start product images -->
                                 <div class="product-images">
-                                    <div class="main-image images">
-                                        <img alt="big images" src="{{URL::to('frontend/images/product/big-img/1.jpg')}}">
+                                    <div class="main-image images product_image_quickview">
+                                        
                                     </div>
                                 </div>
                                 <!-- end product images -->
                                 <div class="product-info">
-                                    <h1>Simple Fabric Bags</h1>
-                                    <div class="rating__and__review">
-                                        <ul class="rating">
-                                            <li><span class="ti-star"></span></li>
-                                            <li><span class="ti-star"></span></li>
-                                            <li><span class="ti-star"></span></li>
-                                            <li><span class="ti-star"></span></li>
-                                            <li><span class="ti-star"></span></li>
-                                        </ul>
-                                        <div class="review">
-                                            <a href="#">4 customer reviews</a>
-                                        </div>
-                                    </div>
+                                    <h1 class="product_name_quickview"></h1>
                                     <div class="price-box-3">
                                         <div class="s-price-box">
-                                            <span class="new-price">$17.20</span>
-                                            <span class="old-price">$45.00</span>
+                                            <span class="new-price product_price_quickview" ></span>
                                         </div>
                                     </div>
-                                    <div class="quick-desc">
-                                        Designed for simplicity and made from high quality materials. Its sleek geometry and material combinations creates a modern look.
+                                    <div class="quick-desc product_content_quickview">
+                                        
                                     </div>
                                     <div class="select__color">
-                                        <h2>Select color</h2>
+                                        <h2>Thể loại: </h2>
                                         <ul class="color__list">
                                             <li class="red"><a title="Red" href="#">Red</a></li>
-                                            <li class="gold"><a title="Gold" href="#">Gold</a></li>
-                                            <li class="orange"><a title="Orange" href="#">Orange</a></li>
-                                            <li class="orange"><a title="Orange" href="#">Orange</a></li>
                                         </ul>
                                     </div>
                                     <div class="select__size">
-                                        <h2>Select size</h2>
+                                        <h2>NXB:</h2>
                                         <ul class="color__list">
                                             <li class="l__size"><a title="L" href="#">L</a></li>
-                                            <li class="m__size"><a title="M" href="#">M</a></li>
-                                            <li class="s__size"><a title="S" href="#">S</a></li>
-                                            <li class="xl__size"><a title="XL" href="#">XL</a></li>
-                                            <li class="xxl__size"><a title="XXL" href="#">XXL</a></li>
                                         </ul>
                                     </div>
                                     <div class="social-sharing">
                                         <div class="widget widget_socialsharing_widget">
-                                            <h3 class="widget-title-modal">Share this product</h3>
+                                            <h3 class="widget-title-modal">Chia sẻ: </h3>
                                             <ul class="social__net social__net--2 d-flex justify-content-start">
-                                                <li class="facebook"><a href="#" class="rss social-icon"><i class="zmdi zmdi-rss"></i></a></li>
-                                                <li class="linkedin"><a href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a></li>
-                                                <li class="pinterest"><a href="#" class="pinterest social-icon"><i class="zmdi zmdi-pinterest"></i></a></li>
-                                                <li class="tumblr"><a href="#" class="tumblr social-icon"><i class="zmdi zmdi-tumblr"></i></a></li>
+                                                <li class="tumblr"><a href="#" class="tumblr social-icon"><i style="font-size: 30px;" class="bi bi-facebook"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="addtocart-btn">
-                                        <a href="#">Add to cart</a>
+                                    <div class="addtocart-btn addtocart_quickview">
+                                         {{-- <a href="javascript:;" onclick="AddCart()">Add to cart</a> --}}
                                     </div>
                                 </div>
                             </div>
@@ -209,6 +186,25 @@
             });
         }
 
+    </script>
+    <script type="text/javascript">
+        $('.quickview').click(function(){
+            var product_id = $(this).data('id_product');
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{url('/quickview-product')}}",
+                method:"POST",
+                dataType:"JSON",
+                data:{product_id:product_id,_token:_token},
+                success:function(data){
+                    $('.product_name_quickview').html(data.product_name);
+                    $('.product_price_quickview').html(data.product_price);
+                    $('.product_content_quickview').html(data.product_content);
+                    $('.product_image_quickview').html(data.product_image);
+                    $('.addtocart_quickview').html(data.add_cart_quickview);
+                }
+            })
+        })
     </script>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 

@@ -74,32 +74,23 @@
                                                 {{-- <span>Số lượng</span>
                                                 <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number"> --}}
 
-                                                <div class="addtocart__actions">
+                                                {{-- <div class="addtocart__actions">
                                                     <button class="tocart" type="submit" onclick="AddCart({{$de_pro->product_id}})" title="Add to Cart">Thêm vào giỏ hàng</button>
+                                                </div> --}}
+                                                
+                                                <div class="addtocart-btn" style="margin-top: 0px;">
+                                                    <a href="javascript:;" onclick="AddCart({{$de_pro->product_id}})">Add to cart</a>
                                                 </div>
+                                                
                                                                                   
                                         </div>
                                         <div class="product-share">
                                             <ul>
                                                 <li class="categories-title">Chia sẻ :</li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="icon-social-twitter icons"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="icon-social-tumblr icons"></i>
-                                                    </a>
-                                                </li>
+                                                
                                                 <li>
                                                     <a href="#">
                                                         <i class="icon-social-facebook icons"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="icon-social-linkedin icons"></i>
                                                     </a>
                                                 </li>
                                             </ul>

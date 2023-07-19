@@ -52,14 +52,14 @@
                                             <a class="first__img" href="{{URL::to('/chi-tiet-san-pham/'.$pro->product_id)}}"><img src="{{URL::to('uploads/product/'.$pro->product_image)}}" alt="product image"></a>
                                             <a class="second__img animation1" href="{{URL::to('/chi-tiet-san-pham/'.$pro->product_id)}}"><img src="{{URL::to('uploads/product/'.$pro->product_image)}}" alt="product image"></a>
                                             <div class="hot__box">
-                                                <span class="hot-label">BEST SALLER</span>
+                                                <span class="hot-label">NEW</span>
                                             </div>
                                         </div>
                                         <div class="product__content content--center">
                                             <h4><a href="{{URL::to('/chi-tiet-san-pham/'.$pro->product_id)}}">{{$pro->product_name}}</a></h4>
                                             <ul class="prize d-flex">
-                                                <li>{{$pro->product_price}} VNĐ</li>
-                                                <li class="old_prize">0 VNĐ</li>
+                                                <li>{{number_format($pro->product_price)}} VNĐ</li>
+                                                
                                             </ul>
                                             <div class="action">
                                                 <div class="actions_inner">

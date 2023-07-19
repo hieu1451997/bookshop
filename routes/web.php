@@ -69,6 +69,9 @@ Route::get('/edit-product/{product_id}','ProductController@edit');
 Route::post('/update-product/{product_id}','ProductController@update');
 
 Route::get('/delete-product/{product_id}','ProductController@delete');
+
+Route::post('/quickview-product','ProductController@quickview_product');
+
 //xuat nhap file excel
 Route::post('/export-product','ProductController@export_product');
 Route::post('/import-product','ProductController@import_product');
